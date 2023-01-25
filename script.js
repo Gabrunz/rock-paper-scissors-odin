@@ -21,32 +21,58 @@ function getPlayerChoice() {
 }
 
 function playRound(playerSelection, computerSelection) {
+
     if (playerSelection === "rock" && computerSelection === "scissors") {
-        return "You win, Rock beats Scissors";
+        window.alert("You win, Rock beats Scissors");
+        return "win";
     }
     else if (playerSelection === "paper" && computerSelection === "rock") {
-        return "You win, Paper beats Rock";
+        window.alert("You win, Paper beats Rock");
+        return "win";
     }
     else if (playerSelection === "scissors" && computerSelection === "paper") {
-        return "You win, Scissors beats Paper";
+        window.alert("You win, Scissors beats Paper");
+        return "win";
     }
     else if (playerSelection === computerSelection) {
-        return "It's a draw, no winner this time";
+        window.alert("It's a draw, no winner this time");
+        return "draw";
     }
     else {
-        return "You lose, " + computerSelection.charAt(0).toUpperCase() + computerSelection.slice(1) + " beats " + playerSelection.charAt(0).toUpperCase() + playerSelection.slice(1);
+        window.alert("You lose, " + computerSelection.charAt(0).toUpperCase() + computerSelection.slice(1) + " beats " + playerSelection.charAt(0).toUpperCase() + playerSelection.slice(1));
+        return "lose";
     }
 }
 
-
-const playerSelection = getPlayerChoice();
-const computerSelection = getComputerChoice();
 
 function game() {
     let wins = 0;
     let loses = 0;
 
     for (i = 0; i < 5; i++) {
+        const playerSelection = getPlayerChoice();
+        const computerSelection = getComputerChoice();
+    
+        const result = playRound(playerSelection, computerSelection);
+        const resultSlice = result.slice(0, 5);
 
+        if (resultSlice === "win") {
+            wins++;
+        }
+        else if (resultSlice == "lose") {
+            loses++;
+        }
+    }
+
+    if (wins > loses) {
+        window.alert("You win more rounds than the IA, you have defeated the super IA, the world is safe now");
+    }
+    else if (loses > wins) {
+        window.alert("You lose more rounds than the IA, the IA now control the world");
+    }
+    else {
+        window.alert("It's a draw, you are a good competitor for defeat the super IA");
     }
 }
+
+game();
